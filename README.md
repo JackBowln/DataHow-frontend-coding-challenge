@@ -1,3 +1,6 @@
+# Informations about this repository
+
+This repository stores the code project for the organization DataHow, where Vue 3 with TypeScript was used for its frontend and Vitest for the unit tests, and Vuetify for the components
 # DataHow-coding-challenge
 
 This template should help get you started developing with Vue 3 in Vite.
