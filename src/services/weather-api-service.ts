@@ -17,6 +17,6 @@ export class WeatherService extends HttpClient {
   }
 
   public getWeatherData = (UserPosition: geolocation) =>
-    this.instance.get<AxiosResponse>(`forecast?latitude=-${UserPosition.latitude}&longitude=${UserPosition.longitude}&hourly=temperature_2m,precipitation&current_weather=true&past_days=2`)
+    this.instance.get<AxiosResponse>(`forecast?latitude=${UserPosition.latitude}&longitude=${UserPosition.longitude}&hourly=temperature_2m,precipitation&current_weather=true&past_days=2`)
 
 }

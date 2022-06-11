@@ -1,37 +1,37 @@
 import { defineStore } from "pinia"
 import type { WeatherData } from "@/types/weather"
 import { WeatherService } from "@/services/weather-api-service"
-import uselocation from "@/composables/uselocation"
+import type geolocation from "@/types/geolocation"
 
-export const useUserProfiles = defineStore("user-profile", {
+export const useWeatherApi = defineStore("weather-api", {
   state: () => {
     return {
-      data: [
-      
-      ] as WeatherData[],
+      data: {} as WeatherData,
       errorMessage: "",
       response: {},
-      api: WeatherService
+      api: WeatherService,
+      payload: {}
     }
   },
   actions: {
-    async getCurrentWeather() {
-      const { payload } = uselocation()
-
-      try {
-        const response = await this.api.getInstance().getWeatherData(payload)
-        this.data = response.data.profiles
-        this.response = response
-        return response
-      } catch (error) {
-        this.errorMessage = this.handleErrors(error)
-        this.handleErrors(error)
-        return this.handleErrors(error)
-      }
+    async getCurrentWeather(location: geolocation) {
+   
+        try {
+          
+          const response = await this.api.getInstance().getWeatherData(location)
+          console.log(response)
+          this.data = response.data
+          this.response = response
+          return response
+        } catch (error) {
+          this.errorMessage = this.handleErrors(error)
+          this.handleErrors(error)
+          return this.handleErrors(error)
+        }
     },
     handleErrors(error: any) {
       if (error) {
-        const errorsDetails = error.response.data.detail
+        const errorsDetails = error.response
     
         this.errorMessage = errorsDetails
         return error

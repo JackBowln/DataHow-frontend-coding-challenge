@@ -1,5 +1,5 @@
-  export interface Hourly {
-      time: string[];
+  export interface Hourly extends Array<WeatherData>  {
+      time: string[]  ;
       temperature_2m: number[];
   }
 
