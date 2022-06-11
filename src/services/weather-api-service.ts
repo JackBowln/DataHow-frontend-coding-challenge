@@ -1,11 +1,12 @@
 import type { AxiosResponse } from "axios"
 import { HttpClient } from "@/services/HttpClient"
-import type { WeatherData } from "@/types/index"
+import type { WeatherData } from "@/types/weather"
+import type geolocation from "@/types/geolocation"
 
 export class WeatherService extends HttpClient {
   private static classInstance: any
 
-  public constructor(url?: string) {
+  public constructor(url = import.meta.env.VITE_API_URL) {
     super(url)
   }
   static getInstance(): any {
@@ -15,7 +16,7 @@ export class WeatherService extends HttpClient {
     return this.classInstance
   }
 
-  public getWeatherData = () =>
-    this.instance.get<AxiosResponse>("/")
+  public getWeatherData = (UserPosition: geolocation) =>
+    this.instance.get<AxiosResponse>(`forecast?latitude=-${UserPosition.latitude}&longitude=${UserPosition.longitude}&hourly=temperature_2m,precipitation&current_weather=true&past_days=2`)
 
 }
