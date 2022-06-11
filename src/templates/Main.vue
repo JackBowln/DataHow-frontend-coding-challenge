@@ -1,5 +1,4 @@
 <template>
-
   <LineChart v-bind="lineChartProps" />
 </template>
 
@@ -22,13 +21,14 @@ const getWeatherData = async () => {
 };
 
 const hourlyData = WeatherStore.data.hourly
-const data = ref()
 const getData = computed<ChartData<"line">>(() => ({
-  labels: hourlyData.time,
+  // labels: hourlyData,
+  labels: [0, 1 , 2, 3, 4, 5, 6, 7],
   datasets: [
     {
       label: "Precipitation",
-      data: hourlyData.precipitation,
+      // data: hourlyData.precipitation,
+      data: [4, 5 ,1, 7, 8,1, 9],
       fill: false,
       borderColor: "#4bc0c0",
     },
